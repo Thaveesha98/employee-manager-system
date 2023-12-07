@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// import { IoMenu } from "react-icons/io5";
 
 function Table() {
   const [employeeData, setEmployeeData] = useState([]);
@@ -21,6 +20,7 @@ function Table() {
         console.error("Error fetching data:", error);
       });
   }, []); // Empty dependency array means this effect runs only once when the component mounts
+
   const handleDeleteClick = async (id) => {
     try {
       await axios.delete(
@@ -33,17 +33,18 @@ function Table() {
       console.error("Error during deletion:", error);
     }
   };
+
   const handelEditClick = (id) => {
     navigate(`/employee/edit/${id}`);
   };
 
   return (
-    <div>
-      <div className="mx-auto flex justify-center">
-        <table className="w-[80%]">
+    <div className="w-full max-sm:w-full">
+      <div className="mx-auto flex justify-between md:w-[95%] max-sm:w-[98%] max-sm:overflow-x-scroll max-sm:mx-auto">
+        <table className="w-full">
           <thead>
             <tr className="bg-green-300 border border-green-500">
-              <th>Image</th>
+              <th className="w-[80px] h-[50px]">Image</th>
               <th className="bg-green-300 border border-green-500">
                 First Name
               </th>
@@ -53,23 +54,23 @@ function Table() {
               <th className="bg-green-300 border border-green-500">Email</th>
               <th className="bg-green-300 border border-green-500">Phone</th>
               <th className="bg-green-300 border border-green-500">Gender</th>
-              <th className="bg-green-300 border border-green-500">Action</th>
+              <th className="bg-green-300 border border-green-500 ">Action</th>
             </tr>
           </thead>
           <tbody className="border border-green-400">
             {employeeData.map((employee) => (
               <tr className="border border-green-400" key={employee.id}>
-                <tr>
+                <td>
                   <img
+                    className="mx-auto justify-center items-center"
                     src={employee?.photo}
                     alt={`Profile of ${employee.first_name} ${employee.last_name}`}
                     style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
+                      width: "80px",
+                      height: "80px",
                     }}
                   />
-                </tr>
+                </td>
                 <td className="border border-green-400">
                   {employee.first_name}
                 </td>
@@ -81,20 +82,20 @@ function Table() {
                 <td className="border border-green-400">
                   {employee.gender === "F" ? "Female" : "Male"}
                 </td>
-                <th className="space-x-3">
+                <td className="flex pt-[14%] max-sm:mx-[1%] max-sm:mt-[28%] max-sm:space-x-2 items-center justify-center space-x-3">
                   <button
-                    className=" p-2 rounded-lg text-sm text-white bg-gray-600 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600"
+                    className="p-[6%] max-sm:py-[5%] rounded-lg text-sm text-white bg-gray-600 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600"
                     onClick={() => handelEditClick(employee.id)}
                   >
                     Edit
                   </button>
                   <button
-                    className=" p-2   rounded-lg w-[32px]  text-white bg-red-600 shadow-md duration-200 hover:bg-red-200 focus:outline-none focus:bg-purple-600"
+                    className="p-[7%] max-sm:py-[7%] rounded-lg w-[36px] text-white bg-red-600 shadow-md duration-200 hover:bg-red-200 focus:outline-none focus:bg-purple-600"
                     onClick={() => handleDeleteClick(employee.id)}
                   >
                     <MdOutlineDeleteOutline />
                   </button>
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>

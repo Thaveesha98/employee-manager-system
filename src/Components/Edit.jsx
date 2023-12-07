@@ -82,116 +82,133 @@ function Edit() {
   };
 
   return (
-    <div className="relative flex flex-col justify-center pb-[9%] overflow-hidden">
-      <div className="w-full p-6 m-auto mt-0 bg-white rounded-xl shadow-md lg:max-w-xl">
-        <Formik
-          initialValues={data}
-          enableReinitialize={true}
-          validate={validate}
-          onSubmit={handleFormSubmit}
+    <>
+      <div className="px-5 py-2 ml-auto justify-end flex">
+        <button
+          className="w-[8%] py-2 rounded-3xl text-white bg-blue-600 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600 max-sm:w-[30%] max-sm:py-[1%] max-md:w-[15%] max-md:py-[1%] max-lg:w-[15%] max-lg:py-[1%]"
+          onClick={() => navigate("/employee/list")}
         >
-          {({ errors, touched }) => (
-            <Form>
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[-0.3%]">First Name</label>
-                <Field
-                  type="text"
-                  name="first_name"
-                  className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
-                    errors.first_name && touched.first_name
-                      ? "border-red-500"
-                      : ""
-                  }`}
-                />
-                <ErrorMessage
-                  name="first_name"
-                  component="div"
-                  className="text-red-500"
-                />
-              </div>
-
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[0.1%]">Last Name</label>
-                <Field
-                  type="text"
-                  name="last_name"
-                  className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
-                    errors.last_name && touched.last_name
-                      ? "border-red-500"
-                      : ""
-                  }`}
-                />
-                <ErrorMessage
-                  name="last_name"
-                  component="div"
-                  className="text-red-500"
-                />
-              </div>
-
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[7.5%]">Email</label>
-                <Field
-                  type="email"
-                  name="email"
-                  className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
-                    errors.email && touched.email ? "border-red-500" : ""
-                  }`}
-                />
-                <ErrorMessage
-                  name="email"
-                  component="div"
-                  className="text-red-500"
-                />
-              </div>
-
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[6%]">Phone</label>
-                <Field
-                  type="tel"
-                  name="number"
-                  className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
-                    errors.number && touched.number ? "border-red-500" : ""
-                  }`}
-                />
-                <ErrorMessage
-                  name="number"
-                  component="div"
-                  className="text-red-500"
-                />
-              </div>
-
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[5%]">Gender</label>
-                <Field
-                  as="select"
-                  name="gender"
-                  className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
-                    errors.gender && touched.gender ? "border-red-500" : ""
-                  }`}
-                >
-                  <option value="M">Male</option>
-                  <option value="F">Female</option>
-                </Field>
-                <ErrorMessage
-                  name="gender"
-                  component="div"
-                  className="text-red-500"
-                />
-              </div>
-
-              <div>
-                <button
-                  type="submit"
-                  className="w-[15%] px-4 py-2 ml-auto items-center flex tracking-wide rounded-lg text-purple-950 border-purple-950 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600"
-                >
-                  SAVE
-                </button>
-              </div>
-            </Form>
-          )}
-        </Formik>
+          List View
+        </button>
       </div>
-    </div>
+      <div className="relative flex flex-col justify-center pb-[9%] overflow-hidden mt-[10px]">
+        <div className="w-full p-6 m-auto mt-0 bg-white rounded-xl shadow-md lg:max-w-xl max-sm:w-[95%] max-sm:mx-auto md:w-[80%] md:mx-auto">
+          <Formik
+            initialValues={data}
+            enableReinitialize={true}
+            validate={validate}
+            onSubmit={handleFormSubmit}
+          >
+            {({ errors, touched }) => (
+              <Form>
+                <div>
+                  <div className="mb-4 flex items-center space-x-5">
+                    <label className="w-[90px]">First Name</label>
+                    <Field
+                      type="text"
+                      name="first_name"
+                      className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                        errors.first_name && touched.first_name
+                          ? "border-red-500"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="first_name"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+
+                <div>
+                  <div className="mb-4 flex items-center space-x-5">
+                    <label className="w-[90px]">Last Name</label>
+                    <Field
+                      type="text"
+                      name="last_name"
+                      className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                        errors.last_name && touched.last_name
+                          ? "border-red-500"
+                          : ""
+                      }`}
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="last_name"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+                <div>
+                  <div className="mb-4 flex items-center space-x-5">
+                    <label className="w-[90px]">Email</label>
+                    <Field
+                      type="email"
+                      name="email"
+                      className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                        errors.email && touched.email ? "border-red-500" : ""
+                      }`}
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+                <div>
+                  <div className="mb-4 flex items-center space-x-5">
+                    <label className="w-[90px]">Phone</label>
+                    <Field
+                      type="tel"
+                      name="number"
+                      className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                        errors.number && touched.number ? "border-red-500" : ""
+                      }`}
+                    />
+                  </div>
+                  <ErrorMessage
+                    name="number"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+                <div>
+                  <div className="mb-4 flex items-center space-x-5">
+                    <label className="w-[90px]">Gender</label>
+                    <Field
+                      as="select"
+                      name="gender"
+                      className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                        errors.gender && touched.gender ? "border-red-500" : ""
+                      }`}
+                    >
+                      <option value="M">Male</option>
+                      <option value="F">Female</option>
+                    </Field>
+                  </div>
+                  <ErrorMessage
+                    name="gender"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+
+                <div>
+                  <button
+                    type="submit"
+                    className="w-[15%] px-4 py-2 ml-auto flex items-center justify-center tracking-wide rounded-lg text-purple-950 border-purple-950 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600"
+                  >
+                    SAVE
+                  </button>
+                </div>
+              </Form>
+            )}
+          </Formik>
+        </div>
+      </div>
+    </>
   );
 }
 

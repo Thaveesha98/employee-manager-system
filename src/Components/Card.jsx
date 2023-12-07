@@ -37,11 +37,11 @@ function Card() {
 
   return (
     <div>
-      <div className="flex flex-wrap justify-center">
+      <div className="flex flex-wrap justify-center ">
         {data.map((employee) => (
           <div
             key={employee.id}
-            className="max-w-md m-4 p-6 bg-white rounded-md shadow-md"
+            className="m-4 p-6 bg-white rounded-md shadow-md w-[15%] max-sm:w-[80%]  max-sm:block max-md:w-[40%] max-lg:w-[40%]  "
           >
             <div className="mb-4 flex justify-center">
               <img
@@ -50,11 +50,13 @@ function Card() {
                 alt={`${employee.first_name} ${employee.last_name}`}
               />
             </div>
-            <div>
+            <div className="w-auto">
               <p className="text-lg font-semibold">
                 {`${employee.first_name} ${employee.last_name}`}
               </p>
-              <p className="text-gray-600">{employee.email}</p>
+              <p className="text-gray-600 text-xs flex-grow">
+                {employee.email}
+              </p>
               <p className="text-gray-600">{employee.number}</p>
               <p className="text-gray-600">
                 {employee.gender === "F" ? "Female" : "Male"}

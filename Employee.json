@@ -11,10 +11,10 @@
     },
     {
       "first_name": "Lindsay",
-      "last_name": "Herman",
+      "last_name": "barnad",
       "email": "Ewald.Kunde@gmail.com",
       "number": "+94771274218",
-      "gender": "F",
+      "gender": "M",
       "id": "2",
       "photo": "https://randomuser.me/api/portraits/men/30.jpg"
     },
@@ -112,7 +112,7 @@
       "first_name": "rashini",
       "last_name": "vinduni",
       "email": "manulamadubashana@gmail.com",
-      "number": "0762584755",
+      "number": "+94762584755",
       "gender": "M",
       "photo": "https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg",
       "id": "0A7WdV2"
@@ -143,6 +143,24 @@
       "gender": "F",
       "photo": "https://picsum.photos/200/300",
       "id": "96fkeCW"
+    },
+    {
+      "first_name": "Thaveesha",
+      "last_name": "yanith",
+      "email": "thaveeshayanith98@gmail.com",
+      "number": "+94769309175",
+      "gender": "F",
+      "photo": "https://picsum.photos/200/300",
+      "id": "bKFdoO_"
+    },
+    {
+      "first_name": "kaveesha",
+      "last_name": "Rodriguez",
+      "email": "thaveeshayanith98@gmail.com",
+      "number": "+94769309175",
+      "gender": "F",
+      "photo": "https://picsum.photos/200/300",
+      "id": "wo0Y8_z"
     }
   ]
 }
