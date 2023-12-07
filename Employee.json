@@ -1,10 +1,10 @@
 {
   "employee": [
     {
-      "first_name": "Henri",
+      "first_name": "Henrish",
       "last_name": "Rodriguez",
       "email": "Darrin_Rippin@gmail.com",
-      "number": "+94771277218",
+      "number": "+94769309175",
       "gender": "F",
       "id": "1",
       "photo": "https://randomuser.me/api/portraits/men/92.jpg"
@@ -116,6 +116,33 @@
       "gender": "M",
       "photo": "https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg",
       "id": "0A7WdV2"
+    },
+    {
+      "first_name": "kasun",
+      "last_name": "rajitha",
+      "email": "kasun@gmail.com",
+      "number": "0778564758",
+      "gender": "M",
+      "photo": "https://picsum.photos/200/300",
+      "id": "rtypq3C"
+    },
+    {
+      "first_name": "manula",
+      "last_name": "Rodriguez",
+      "email": "rashinawo@gmail.com",
+      "number": "+94771277218",
+      "gender": "M",
+      "photo": "https://picsum.photos/200/300",
+      "id": "9sVedFO"
+    },
+    {
+      "first_name": "kaveesha",
+      "last_name": "patabadi",
+      "email": "rashinawo@gmail.com",
+      "number": "+94769309175",
+      "gender": "F",
+      "photo": "https://picsum.photos/200/300",
+      "id": "96fkeCW"
     }
   ]
 }

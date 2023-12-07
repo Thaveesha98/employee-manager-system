@@ -1,26 +1,27 @@
+// EmployeeAdd.jsx
+
 import React from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function EmployeeAdd() {
   const navigate = useNavigate();
+
   const initialValues = {
     first_name: "",
     last_name: "",
     email: "",
     number: "",
     gender: "M",
-    photo:
-      "https://png.pngtree.com/element_our/png/20181206/users-vector-icon-png_260862.jpg",
+    photo: "https://picsum.photos/200/300",
   };
-  console.log(process.env.REACT_APP_API_BASE_URL);
-  const handleRegisterClick = async (values) => {
+
+  const handleRegisterClick = async (values, formikBag) => {
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_API_BASE_URL}/employee`,
-        values, // Use the values parameter from Formik
-
+        values,
         {
           headers: {
             "Content-Type": "application/json; charset=utf-8",
@@ -29,31 +30,42 @@ function EmployeeAdd() {
         }
       );
       console.log(response.data);
+
+      // Refresh the summary page
+      navigate("/employee/list", { replace: true });
     } catch (error) {
       console.error("Error during posting:", error);
     }
   };
-  // const handelAdd = (id) => {
-  //   navigate(`/employee/list`);
-  // };
 
   const validate = (values) => {
     const errors = {};
 
+    // Validation rules
     if (!values.first_name) {
       errors.first_name = "First name is required";
+    } else if (!/^[a-zA-Z]{6,10}$/.test(values.first_name)) {
+      errors.first_name =
+        "First name should only contain alphabets, min 6, max 10 characters";
     }
 
     if (!values.last_name) {
       errors.last_name = "Last name is required";
+    } else if (!/^[a-zA-Z]{6,10}$/.test(values.last_name)) {
+      errors.last_name =
+        "Last name should only contain alphabets, min 6, max 10 characters";
     }
 
     if (!values.email) {
       errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+      errors.email = "Invalid email address";
     }
 
     if (!values.number) {
       errors.number = "Phone number is required";
+    } else if (!/^\+94\d{9}$/.test(values.number)) {
+      errors.number = "Invalid Sri Lankan phone number";
     }
 
     if (!values.gender) {
@@ -65,9 +77,9 @@ function EmployeeAdd() {
 
   return (
     <div>
-      <div className="px-5 py-2  ml-auto justify-end flex">
+      <div className="px-5 py-2 ml-auto justify-end flex">
         <button
-          className="w-[8%] py-2   rounded-3xl text-white bg-blue-600 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600"
+          className="w-[8%] py-2 rounded-3xl text-white bg-blue-600 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600"
           onClick={() => navigate("/employee/list")}
         >
           List View
@@ -80,70 +92,106 @@ function EmployeeAdd() {
             validate={validate}
             onSubmit={handleRegisterClick}
           >
-            <Form>
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[-0.3%]">First Name</label>
-                <Field
-                  type="text"
-                  name="first_name"
-                  className="w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm"
-                />
-                <ErrorMessage name="first_name" component="div" />
-              </div>
+            {({ isSubmitting, errors, touched }) => (
+              <Form>
+                <div className="mb-4 flex items-center space-x-5">
+                  <label className="mr-[0.3%]">First Name</label>
+                  <Field
+                    type="text"
+                    name="first_name"
+                    className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                      errors.first_name && touched.first_name
+                        ? "border-red-500"
+                        : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="first_name"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
 
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[0.1%]">Last Name</label>
-                <Field
-                  type="text"
-                  name="last_name"
-                  className="w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm"
-                />
-                <ErrorMessage name="last_name" component="div" />
-              </div>
+                <div className="mb-4 flex items-center space-x-5">
+                  <label className="mr-[0.1%]">Last Name</label>
+                  <Field
+                    type="text"
+                    name="last_name"
+                    className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                      errors.last_name && touched.last_name
+                        ? "border-red-500"
+                        : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="last_name"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
 
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[7.5%]">Email</label>
-                <Field
-                  type="email"
-                  name="email"
-                  className="w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm"
-                />
-                <ErrorMessage name="email" component="div" />
-              </div>
+                <div className="mb-4 flex items-center space-x-5">
+                  <label className="mr-[7.5%]">Email</label>
+                  <Field
+                    type="email"
+                    name="email"
+                    className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                      errors.email && touched.email ? "border-red-500" : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="email"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
 
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[6%]">Phone</label>
-                <Field
-                  type="tel"
-                  name="number"
-                  className="w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm"
-                />
-                <ErrorMessage name="number" component="div" />
-              </div>
+                <div className="mb-4 flex items-center space-x-5">
+                  <label className="mr-[6%]">Phone</label>
+                  <Field
+                    type="tel"
+                    name="number"
+                    className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                      errors.number && touched.number ? "border-red-500" : ""
+                    }`}
+                  />
+                  <ErrorMessage
+                    name="number"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
 
-              <div className="mb-4 flex items-center space-x-5">
-                <label className="mr-[5%]">Gender</label>
-                <Field
-                  as="select"
-                  name="gender"
-                  className="w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm"
-                >
-                  <option value="M">Male</option>
-                  <option value="F">Female</option>
-                </Field>
-                <ErrorMessage name="gender" component="div" />
-              </div>
+                <div className="mb-4 flex items-center space-x-5">
+                  <label className="mr-[5%]">Gender</label>
+                  <Field
+                    as="select"
+                    name="gender"
+                    className={`w-[75%] px-4 py-2 mt-2 bg-blue-200 border-b border-purple-400 outline-none rounded-sm ${
+                      errors.gender && touched.gender ? "border-red-500" : ""
+                    }`}
+                  >
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                  </Field>
+                  <ErrorMessage
+                    name="gender"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
 
-              <div>
-                <button
-                  type="submit"
-                  className="w-[15%] px-4 py-2 ml-auto items-center flex tracking-wide rounded-lg text-purple-950 border-purple-950 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600"
-                  // onClick={() => handelAdd()}
-                >
-                  ADD
-                </button>
-              </div>
-            </Form>
+                <div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-[15%] px-4 py-2 ml-auto items-center flex tracking-wide rounded-lg text-purple-950 border-purple-950 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600"
+                  >
+                    ADD
+                  </button>
+                </div>
+              </Form>
+            )}
           </Formik>
         </div>
       </div>

@@ -6,7 +6,7 @@ import Card from "./Card";
 
 function ShowEmployee() {
   const navigate = useNavigate();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
 
   const handleGridView = () => {
     if (isActive === false) {
