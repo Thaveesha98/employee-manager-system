@@ -14,7 +14,7 @@ function EmployeeAdd() {
     email: "",
     number: "",
     gender: "M",
-    photo: "https://picsum.photos/200/300",
+    photo: "https://xsgames.co/randomusers/avatar.php?g=male",
   };
 
   const handleRegisterClick = async (values, formikBag) => {

@@ -86,7 +86,7 @@ function Edit() {
       <div className="px-5 py-2 ml-auto justify-end flex">
         <button
           className="w-[8%] py-2 rounded-3xl text-white bg-blue-600 shadow-md duration-200 hover:bg-blue-200 focus:outline-none focus:bg-purple-600 max-sm:w-[30%] max-sm:py-[1%] max-md:w-[15%] max-md:py-[1%] max-lg:w-[15%] max-lg:py-[1%]"
-          onClick={() => navigate("/employee/list")}
+          onClick={() => navigate(`/employee/list`)}
         >
           List View
         </button>
