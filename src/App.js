@@ -15,8 +15,8 @@ function App() {
       <Routes>
 
         <Route path="/employee/add" element={<EmployeeAdd />} />
-        <Route path="/employee/list" element={<ShowEmployee />} />
-        {/* <Route path="/employee/list(grid view)" element={<Card />} /> */}
+        <Route path="/" element={<ShowEmployee />} />
+        <Route path="/employee/list(grid view)" element={<Card />} />
         <Route path="/employee/edit/:id" element={<Edit />} />
       </Routes>
     </Router>
